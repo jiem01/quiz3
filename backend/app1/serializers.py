@@ -1,0 +1,60 @@
+from rest_framework import serializers
+from django.contrib.auth.models import User
+from .models import Service
+from rest_framework_simplejwt.tokens import RefreshToken
+
+class ServiceListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Service
+        fields = [
+            'id',
+            'service_name',
+            'description',
+            'rating',
+            'sample_image',
+        ]
+
+class ServiceDetailSerializer(serializers.ModelSerializer):
+    name_of_the_expert = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Service
+        fields = [
+            'id',
+            'service_name',
+            'description',
+            'rating',
+            'price',
+            'duration_of_service',
+            'sample_image',
+            'name_of_the_expert',
+        ]
+
+    def get_name_of_the_expert(self, obj):
+        if obj.expert:
+            return f"{obj.expert.first_name} {obj.expert.last_name}"
+        return None
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'email']
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'email']
+
+
+class UserSerializerWithToken(UserSerializer):
+    token = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'email', 'token']
+
+    def get_token(self, obj):
+        token = RefreshToken.for_user(obj)
+        return str(token.access_token)
