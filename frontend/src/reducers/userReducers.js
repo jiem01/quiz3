@@ -1,4 +1,3 @@
-// src/reducers/userReducers.js
 import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -9,12 +8,8 @@ import {
   USER_LIST_FAIL,
 } from '../constants/userConstants';
 
-const userInfoFromStorage = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo'))
-  : null;
-
-// Login / Logout Reducer
-export const userLoginReducer = (state = { userInfo: userInfoFromStorage }, action) => {
+// LOGIN REDUCER
+export const userLoginReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_LOGIN_REQUEST:
       return { loading: true };
@@ -23,13 +18,13 @@ export const userLoginReducer = (state = { userInfo: userInfoFromStorage }, acti
     case USER_LOGIN_FAIL:
       return { loading: false, error: action.payload };
     case USER_LOGOUT:
-      return { userInfo: null };
+      return {};
     default:
       return state;
   }
 };
 
-// User List Reducer (for superuser)
+// USER LIST REDUCER
 export const userListReducer = (state = { users: [] }, action) => {
   switch (action.type) {
     case USER_LIST_REQUEST:

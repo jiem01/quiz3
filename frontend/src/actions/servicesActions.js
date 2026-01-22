@@ -31,24 +31,29 @@ export const listServices = () => async (dispatch) => {
   }
 };
 
-// Fetch single service by ID
-export const getServiceDetails = (id) => async (dispatch) => {
+
+export const getServiceDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: SERVICE_DETAIL_REQUEST });
 
-    const { data } = await axios.get(`http://127.0.0.1:8000/api/service/${id}`);
+    const { userLogin: { userInfo } } = getState(); // get token from redux store
 
-    dispatch({
-      type: SERVICE_DETAIL_SUCCESS,
-      payload: data,
-    });
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.access}` // or userInfo.token depending on your login action
+      },
+    };
+
+    const { data } = await axios.get(`http://127.0.0.1:8000/api/service/${id}/`, config);
+
+    dispatch({ type: SERVICE_DETAIL_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: SERVICE_DETAIL_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: error.response && error.response.data.detail
+        ? error.response.data.detail
+        : error.message,
     });
   }
 };
