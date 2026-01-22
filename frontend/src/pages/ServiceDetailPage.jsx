@@ -23,14 +23,8 @@ const ServiceDetailPage = () => {
     return (
         <Row>
             <Col md={6}>
-                <Image
-  src={
-    service.id === 1
-      ? 'http://127.0.0.1:8000/media/services/pool.jpg'
-      : service.id === 2
-      ? 'http://127.0.0.1:8000/media/services/footspa.jpg'
-      : 'https://via.placeholder.com/400'
-  }
+<Image
+  src={service.sample_image ? `http://127.0.0.1:8000${service.sample_image}` : 'https://via.placeholder.com/400'}
   fluid
 />
 
