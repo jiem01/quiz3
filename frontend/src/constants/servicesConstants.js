@@ -1,0 +1,4 @@
+// src/constants/servicesConstants.js
+export const SERVICES_LIST_REQUEST = 'SERVICES_LIST_REQUEST';
+export const SERVICES_LIST_SUCCESS = 'SERVICES_LIST_SUCCESS';
+export const SERVICES_LIST_FAIL = 'SERVICES_LIST_FAIL';
