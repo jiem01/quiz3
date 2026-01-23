@@ -1,18 +1,42 @@
-clone the repo
+### **Installation and Setup**
 
-for backend:
+**1. Clone the repository**
+
+```cmd
+git clone https://github.com/jiem01/quiz3.git
+
+```
+
+**2. Backend Setup**
+
+```cmd
 pip install -r requirements.txt
-
 cd backend
 python manage.py runserver
 
+```
 
-for frontend:
+**3. Frontend Setup**
+
+```cmd
 cd frontend
 npm install
 npm start
 
-for testing with admin account create super user first
-for testing with normal account:
-username:user1
-password:qwe@123123
+```
+
+---
+
+### **Testing Accounts**
+
+**Admin Account**
+To access the admin panel, you must create a superuser first:
+
+```cmd
+python manage.py createsuperuser
+
+```
+
+**Normal User Account**
+* **Username:** user1
+* **Password:** qwe@123123
