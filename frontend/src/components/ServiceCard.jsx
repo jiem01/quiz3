@@ -11,10 +11,12 @@ const ServiceCard = ({ service }) => {
                 <Card.Img
   src={
     service.id === 1
-      ? 'http://127.0.0.1:8000/media/services/pool.jpg'
-      : service.id === 2
-      ? 'http://127.0.0.1:8000/media/services/footspa.jpg'
-      : 'https://via.placeholder.com/200x150'
+                            ? 'http://127.0.0.1:8000/media/services/pool.jpg'
+                            : service.id === 2
+                            ? 'http://127.0.0.1:8000/media/services/footspa.jpg'
+                            : service.id === 8
+                            ? 'http://127.0.0.1:8000/media/services/massage.jpg'
+                            : 'https://via.placeholder.com/200x150'
   }
   variant="top"
 />

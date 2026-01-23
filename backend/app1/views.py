@@ -12,20 +12,25 @@ from .serializers import (
     UserProfileSerializer
 )
 
-# LIST VIEW (Public)
 @api_view(['GET'])
 def list_services(request):
     services = Service.objects.all()
-    serializer = ServiceListSerializer(services, many=True)
+    serializer = ServiceListSerializer(
+        services,
+        many=True,
+        context={'request': request}
+    )
     return Response(serializer.data)
 
 
-# DETAIL VIEW (Authenticated only)
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def service_detail(request, pk):
     service = get_object_or_404(Service, pk=pk)
-    serializer = ServiceDetailSerializer(service)
+    serializer = ServiceDetailSerializer(
+        service,
+        context={'request': request}
+    )
     return Response(serializer.data)
 
 

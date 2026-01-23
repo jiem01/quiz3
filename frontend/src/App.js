@@ -1,13 +1,14 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
-import Header from './pages/Header';
-import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
-import ServiceDetailPage from './pages/ServiceDetailPage';
-import UserListPage from './pages/UserListPage';
-import ProfilePage from './pages/ProfilePage';
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Container } from 'react-bootstrap'
+
+import Header from './pages/Header'
+import Footer from './components/Footer'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
+import ServicePage from './pages/ServicePage'
+import UserListPage from './pages/UserListPage'
+import ProfilePage from './pages/ProfilePage'
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/service/:id" element={<ServiceDetailPage />} /> {/* Single service */}
+            <Route path="/service/:id" element={<ServicePage />} />
             <Route path="/users" element={<UserListPage />} />
             <Route path="/profile" element={<ProfilePage />} />
           </Routes>
@@ -26,7 +27,7 @@ const App = () => {
         <Footer />
       </div>
     </Router>
-  );
-};
+  )
+}
 
-export default App;
+export default App
